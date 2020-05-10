@@ -11,7 +11,7 @@ gulp.task('Sass', function () {
 });
 
 gulp.task('Scripts',function f() {
-    return gulp.src([ 
+    return gulp.src([
         'app/libs/jquery/dist/jquery.js',
         'app/libs/magnific-popup/dist/jquery.magnific-popup.js'
     ])
@@ -29,6 +29,6 @@ gulp.task('BrowserSync', function () {
     })
 });
 
-gulp.task('Watch',['BrowserSync', 'Sass', 'Scripts' ] ,function () {
-    gulp.watch('app/sass/*.sass', ['Sass'])
+gulp.task('Watch', gulp.parallel('BrowserSync', 'Sass', 'Scripts') ,function () {
+    gulp.watch('app/sass/*.sass', gulp.parallel('Sass'))
 });
